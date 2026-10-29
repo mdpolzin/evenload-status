@@ -11,7 +11,7 @@ sites:
       - 200
     maxResponseTime: 5000
   - name: Web app
-    url: https://d1rocmq5kba400.cloudfront.net
+    url: https://app.dev.evenloadapp.com
     expectedStatusCodes:
       - 200
     maxResponseTime: 5000
