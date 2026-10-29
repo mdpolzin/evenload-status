@@ -1,31 +1,36 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# EvenLoad status page (Upptime). Decision and setup: ADR 0097 and AWS-SETUP.md "Status page"
+# in mdpolzin/EvenLoad. Checks run every 5 minutes on GitHub-hosted runners, outside our AWS stack.
+owner: mdpolzin
+repo: evenload-status
 
+# Dev endpoints until prod launches; then switch each URL to its prod host (AWS-SETUP "Status page").
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: API
+    url: https://api.dev.evenloadapp.com/health
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+  - name: Web app
+    url: https://d1rocmq5kba400.cloudfront.net
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+  - name: Sign-in
+    url: https://cognito-idp.us-west-2.amazonaws.com/us-west-2_YOiAMZ6gV/.well-known/openid-configuration
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+
+assignees:
+  - mdpolzin
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.evenloadapp.com
+  name: EvenLoad status
+  introTitle: "EvenLoad system status"
+  introMessage: Live checks every 5 minutes. Incidents and maintenance are posted here.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+    - title: Incidents
+      href: https://github.com/$OWNER/$REPO/issues
