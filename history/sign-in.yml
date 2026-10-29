@@ -1,7 +1,7 @@
 url: https://cognito-idp.us-west-2.amazonaws.com/us-west-2_YOiAMZ6gV/.well-known/openid-configuration
 status: up
 code: 200
-responseTime: 327
-lastUpdated: 2026-10-29T03:29:47.325Z
+responseTime: 354
+lastUpdated: 2026-10-29T22:06:25.763Z
 startTime: 2026-10-29T01:36:51.501Z
 generator: Upptime <https://github.com/upptime/upptime>
