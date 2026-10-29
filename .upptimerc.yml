@@ -20,6 +20,27 @@ sites:
     expectedStatusCodes:
       - 200
     maxResponseTime: 5000
+  # Ask, document reading and reminders: their CloudWatch alarm states via the API's GET /status
+  # (#1065), so checks never spend model or OCR calls. A part reads degraded while one of its
+  # alarms fires; those alarms exist in prod only, so on dev they always read ok.
+  - name: Ask
+    url: https://api.dev.evenloadapp.com/status
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+    __dangerous__body_degraded_if_text_missing: '"ask":"ok"'
+  - name: Document reading
+    url: https://api.dev.evenloadapp.com/status
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+    __dangerous__body_degraded_if_text_missing: '"documents":"ok"'
+  - name: Reminders
+    url: https://api.dev.evenloadapp.com/status
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+    __dangerous__body_degraded_if_text_missing: '"reminders":"ok"'
 
 assignees:
   - mdpolzin
